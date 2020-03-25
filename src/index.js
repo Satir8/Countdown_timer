@@ -1,4 +1,4 @@
-"use strict";
+import './styles.css';
 
 class CountdownTimer {
   constructor(obj) {
@@ -15,16 +15,16 @@ class CountdownTimer {
       this.time = this.targetDate - this.currentTime;
       this.days = this.pad(Math.floor(this.time / (1000 * 60 * 60 * 24)));
       this.hours = this.pad(
-        Math.floor((this.time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+        Math.floor((this.time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
       );
       this.mins = this.pad(
-        Math.floor((this.time % (1000 * 60 * 60)) / (1000 * 60))
+        Math.floor((this.time % (1000 * 60 * 60)) / (1000 * 60)),
       );
       this.secs = this.pad(Math.floor((this.time % (1000 * 60)) / 1000));
 
       if (this.targetDate.valueOf() <= this.currentTime.valueOf()) {
         clearInterval(this.timerId);
-        this.update("00", "00", "00", "00");
+        this.update('00', '00', '00', '00');
       } else {
         this.update(this.days, this.hours, this.mins, this.secs);
       }
@@ -39,13 +39,13 @@ class CountdownTimer {
   }
 
   pad(value) {
-    return String(value).padStart(2, "0");
+    return String(value).padStart(2, '0');
   }
 }
 
 const timer = new CountdownTimer({
-  selector: "#timer-1",
-  targetDate: new Date("Jan 01, 2020")
+  selector: '#timer-1',
+  targetDate: new Date('Jan 01, 2021'),
 });
 
 timer.start();
